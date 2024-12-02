@@ -1,4 +1,3 @@
-using GraphAPIDelegatedFlow.Models;
 using Newtonsoft.Json;
 
 namespace GraphAPIDelegatedFlow.Managers

@@ -1,6 +1,3 @@
-using GraphAPIDelegatedFlow.Models;
-using Newtonsoft.Json;
-using System.Net.Http;
 using System.Net.Http.Headers;
 
 namespace GraphAPIDelegatedFlow.Managers

@@ -1,8 +1,8 @@
 using System.Text;
+using GraphAPIDelegatedFlow.Helpers;
 using GraphAPIDelegatedFlow.Managers;
 using GraphAPIDelegatedFlow.Models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace GraphAPIDelegatedFlow.Controllers
 {
@@ -69,15 +69,15 @@ namespace GraphAPIDelegatedFlow.Controllers
         }
 
         [HttpGet("User")]
-        public async Task<string> GetUser(string token)
+        public async Task<string> GetUser([FromHeader(Name = "Authorization")] string bearerToken)
         {
-            return await _userManager.GetUser(token);
+            return await _userManager.GetUser(TokenHelper.Handle(bearerToken));
         }
 
         [HttpGet("SendMail")]
-        public async Task SendMail(string token)
+        public async Task SendMail([FromHeader(Name = "Authorization")] string bearerToken)
         {
-            await _mailManager.SendMail(token);
+            await _mailManager.SendMail(TokenHelper.Handle(bearerToken));
         }
     }
 }

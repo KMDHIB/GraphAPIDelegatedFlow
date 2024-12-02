@@ -1,5 +1,4 @@
 using GraphAPIDelegatedFlow.Managers;
-using GraphAPIDelegatedFlow.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
