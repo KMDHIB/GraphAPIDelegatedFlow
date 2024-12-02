@@ -1,10 +1,11 @@
+using GraphAPIDelegatedFlow.Models;
 using Newtonsoft.Json;
 
 namespace GraphAPIDelegatedFlow.Managers
 {
     public interface IMailManager
     {
-        Task SendMail(string token);
+        Task SendMail(string token, MailRequest mailRequest);
     }
 
     public class MailManager : IMailManager
@@ -16,7 +17,7 @@ namespace GraphAPIDelegatedFlow.Managers
             _logger = logger;
         }
 
-        public async Task SendMail(string token)
+        public async Task SendMail(string token, MailRequest mailRequest)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
@@ -25,22 +26,19 @@ namespace GraphAPIDelegatedFlow.Managers
             {
                 Message = new
                 {
-                    Subject = "Test Mail",
+                    Subject = mailRequest.mailSubject,
                     Body = new
                     {
-                        ContentType = "Text",
-                        Content = "This is a test mail."
+                        ContentType = "Html",
+                        Content = mailRequest.mailBody
                     },
-                    ToRecipients = new[]
+                    ToRecipients = mailRequest.mailTo.Select(to => new
                     {
-                        new
+                        EmailAddress = new
                         {
-                            EmailAddress = new
-                            {
-                                Address = "hib@kmd.dk"
-                            }
+                            Address = to
                         }
-                    }
+                    }).ToList()
                 },
                 SaveToSentItems = "true"
             };

@@ -74,10 +74,10 @@ namespace GraphAPIDelegatedFlow.Controllers
             return await _userManager.GetUser(TokenHelper.Handle(bearerToken));
         }
 
-        [HttpGet("SendMail")]
-        public async Task SendMail([FromHeader(Name = "Authorization")] string bearerToken)
+        [HttpPost("SendMail")]
+        public async Task SendMail([FromHeader(Name = "Authorization")] string bearerToken, [FromBody] MailRequest mailRequest)
         {
-            await _mailManager.SendMail(TokenHelper.Handle(bearerToken));
+            await _mailManager.SendMail(TokenHelper.Handle(bearerToken), mailRequest);
         }
     }
 }
