@@ -53,7 +53,7 @@ namespace GraphAPIDelegatedFlow.Controllers
                        .Append("&response_type=code")
                        .Append("&redirect_uri=").Append(_configuration["CallBackUrl"])
                        .Append("&response_mode=query")
-                       .Append("&scope=").Append(_configuration["Scopes"]).Replace(" ", "%20").Replace("+", "%20")
+                       .Append("&scope=").Append(_configuration["Scopes"])
                        .Append("&state=").Append(state);
 
             return new AccessCodeResponse()
