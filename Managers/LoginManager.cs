@@ -1,23 +1,49 @@
 namespace GraphAPIDelegatedFlow.Managers
 {
+    /// <summary>
+    /// Interface for managing login operations.
+    /// </summary>
     public interface ILoginManager
     {
+        /// <summary>
+        /// Gets the token using the provided authorization code.
+        /// </summary>
+        /// <param name="code">The authorization code.</param>
+        /// <returns>A new access token.</returns>
         Task<string> GetToken(string code);
+        /// <summary>
+        /// Refreshes the token using the provided refresh token.
+        /// </summary>
+        /// <param name="refreshToken">The refresh token.</param>
+        /// <returns>A new access token.</returns>
         Task<string> RefeshToken(string refreshToken);
     }
 
+    /// <summary>
+    /// Class for managing login operations.
+    /// </summary>
     public class LoginManager : ILoginManager
     {
         private readonly ILogger<LoginManager> _logger;
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginManager"/> class.
+        /// </summary>
+        /// <param name="logger">The logger instance.</param>
+        /// <param name="configuration">The configuration instance.</param>
         public LoginManager(ILogger<LoginManager> logger, IConfiguration configuration)
         {
             _logger = logger;
             _configuration = configuration;
         }
 
-        public async Task<string> GetToken(string code)
+        /// <summary>
+        /// Gets the token using the provided authorization code.
+        /// </summary>
+        /// <param name="code">The authorization code.</param>
+        /// <returns>A new access token.</returns>
+                public async Task<string> GetToken(string code)
         {
             using (var client = new HttpClient())
             {
@@ -38,6 +64,11 @@ namespace GraphAPIDelegatedFlow.Managers
             }
         }
 
+        /// <summary>
+        /// Refreshes the token using the provided refresh token.
+        /// </summary>
+        /// <param name="refreshToken">The refresh token.</param>
+        /// <returns>A new access token.</returns>
         public async Task<string> RefeshToken(string refreshToken)
         {
             using (var client = new HttpClient())

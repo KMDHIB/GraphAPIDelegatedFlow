@@ -3,6 +3,9 @@
 /// </summary>
 namespace GraphAPIDelegatedFlow.Helpers
 {
+    /// <summary>
+    /// Provides helper methods for handling tokens.
+    /// </summary>
     public static class TokenHelper
     {
         /// <summary>

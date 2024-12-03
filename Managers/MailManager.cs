@@ -3,20 +3,42 @@ using Newtonsoft.Json;
 
 namespace GraphAPIDelegatedFlow.Managers
 {
+    /// <summary>
+    /// Interface for managing mail operations.
+    /// </summary>
     public interface IMailManager
     {
+        /// <summary>
+        /// Sends an email using the provided token and mail request.
+        /// </summary>
+        /// <param name="token">The authentication token.</param>
+        /// <param name="mailRequest">The mail request containing email details.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         Task SendMail(string token, MailRequest mailRequest);
     }
 
+    /// <summary>
+    /// Class for managing mail operations.
+    /// </summary>
     public class MailManager : IMailManager
     {
         private readonly ILogger<MailManager> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MailManager"/> class.
+        /// </summary>
+        /// <param name="logger">The logger instance.</param>
         public MailManager(ILogger<MailManager> logger)
         {
             _logger = logger;
         }
 
+        /// <summary>
+        /// Sends an email using the provided token and mail request.
+        /// </summary>
+        /// <param name="token">The authentication token.</param>
+        /// <param name="mailRequest">The mail request containing email details.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         public async Task SendMail(string token, MailRequest mailRequest)
         {
             var httpClient = new HttpClient();
