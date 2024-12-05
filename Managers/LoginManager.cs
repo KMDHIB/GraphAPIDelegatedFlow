@@ -43,7 +43,7 @@ namespace GraphAPIDelegatedFlow.Managers
         /// </summary>
         /// <param name="code">The authorization code.</param>
         /// <returns>A new access token.</returns>
-                public async Task<string> GetToken(string code)
+        public async Task<string> GetToken(string code)
         {
             using (var client = new HttpClient())
             {
