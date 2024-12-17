@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using GraphAPIDelegatedFlow.Models;
 using Newtonsoft.Json;
 
@@ -60,7 +61,10 @@ namespace GraphAPIDelegatedFlow.Managers
                         {
                             Address = to
                         }
-                    }).ToList()
+                    }).ToList(),
+                    CcRecipients = new List<object>(),
+                    Attachments = new List<object>()
+                    
                 },
                 SaveToSentItems = "true"
             };
