@@ -87,8 +87,8 @@ Redirect the user to the `/authorize` endpoint to grant the app permission.
 #### Example Request:
 
 ```http
-GET https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize?
-client_id={APPLICATION_ID}
+GET https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
+?client_id={APPLICATION_ID}
 &response_type=code
 &redirect_uri={ENCODED_REDIRECT_URI}
 &response_mode=query
@@ -117,7 +117,7 @@ Exchange the authorization code for an access token by calling the `/token` endp
 
 #### Example Request:
 
-```http
+```
 POST https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
 Content-Type: application/x-www-form-urlencoded
 
@@ -180,7 +180,7 @@ Access tokens are short-lived. Use the refresh token to request a new access tok
 
 #### Example Request:
 
-```http
+```
 POST https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
 Content-Type: application/x-www-form-urlencoded
 
